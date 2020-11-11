@@ -1,20 +1,27 @@
 import Vue from 'vue'
 
-import { getMatchedComponentsInstances, getChildrenComponentInstancesUsingFetch, promisify, globalHandleError, urlJoin, sanitizeComponent } from './utils'
-import NuxtError from '../layouts/error.vue'
+import {
+  getMatchedComponentsInstances,
+  promisify,
+  globalHandleError
+} from './utils'
+
 import NuxtLoading from './components/nuxt-loading.vue'
-import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '../node_modules/prismjs/themes/prism.css'
+import '../node_modules/normalize.css/normalize.css'
 
-import '../node_modules/vuetify/dist/vuetify.css'
+import '../assets/sass/global.css'
 
-import _35db9649 from '../layouts/contacts.vue'
-import _6f6c098b from '../layouts/default.vue'
+const _34779363 = () => import('../layouts/catalog.vue'  /* webpackChunkName: "layouts/catalog" */).then(m => m.default || m)
+const _6f6c098b = () => import('../layouts/default.vue'  /* webpackChunkName: "layouts/default" */).then(m => m.default || m)
 
-const layouts = { "_contacts": sanitizeComponent(_35db9649),"_default": sanitizeComponent(_6f6c098b) }
+const layouts = { "_catalog": _34779363,"_default": _6f6c098b }
+
+let resolvedLayouts = {}
 
 export default {
+  head: {"htmlAttrs":{"lang":"ru"},"title":"Nuxt APP","meta":[{"hid":"description","name":"description","content":"Интернет-магазин"}],"link":[{"rel":"shortcut icon","href":"favicon.ico"}],"style":[],"script":[]},
+
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
 
@@ -47,7 +54,7 @@ export default {
       }
     }, [
       loadingEl,
-      h(NuxtBuildIndicator),
+
       transitionEl
     ])
   },
@@ -56,20 +63,17 @@ export default {
     isOnline: true,
 
     layout: null,
-    layoutName: '',
-
-    nbFetching: 0
-    }),
+    layoutName: ''
+  }),
 
   beforeCreate () {
     Vue.util.defineReactive(this, 'nuxt', this.$options.nuxt)
   },
   created () {
     // Add this.$nuxt in child instances
-    this.$root.$options.$nuxt = this
-
+    Vue.prototype.$nuxt = this
+    // add to window so we can listen when ready
     if (process.client) {
-      // add to window so we can listen when ready
       window.$nuxt = this
 
       this.refreshOnlineStatus()
@@ -83,10 +87,9 @@ export default {
     this.context = this.$options.context
   },
 
-  async mounted () {
+  mounted () {
     this.$loading = this.$refs.loading
   },
-
   watch: {
     'nuxt.err': 'errorChanged'
   },
@@ -94,15 +97,7 @@ export default {
   computed: {
     isOffline () {
       return !this.isOnline
-    },
-
-    isFetching () {
-      return this.nbFetching > 0
-    },
-
-    isPreview () {
-      return Boolean(this.$options.previewData)
-    },
+    }
   },
 
   methods: {
@@ -130,17 +125,8 @@ export default {
       const promises = pages.map((page) => {
         const p = []
 
-        // Old fetch
-        if (page.$options.fetch && page.$options.fetch.length) {
+        if (page.$options.fetch) {
           p.push(promisify(page.$options.fetch, this.context))
-        }
-        if (page.$fetch) {
-          p.push(page.$fetch())
-        } else {
-          // Get all component instance to call $fetch
-          for (const component of getChildrenComponentInstancesUsingFetch(page.$vnode.componentInstance)) {
-            p.push(component.$fetch())
-          }
         }
 
         if (page.$options.asyncData) {
@@ -159,51 +145,52 @@ export default {
       try {
         await Promise.all(promises)
       } catch (error) {
-        this.$loading.fail(error)
+        this.$loading.fail()
         globalHandleError(error)
         this.error(error)
       }
       this.$loading.finish()
     },
+
     errorChanged () {
-      if (this.nuxt.err) {
-        if (this.$loading) {
-          if (this.$loading.fail) {
-            this.$loading.fail(this.nuxt.err)
-          }
-          if (this.$loading.finish) {
-            this.$loading.finish()
-          }
+      if (this.nuxt.err && this.$loading) {
+        if (this.$loading.fail) {
+          this.$loading.fail()
         }
-
-        let errorLayout = (NuxtError.options || NuxtError).layout;
-
-        if (typeof errorLayout === 'function') {
-          errorLayout = errorLayout(this.context)
+        if (this.$loading.finish) {
+          this.$loading.finish()
         }
-
-        this.setLayout(errorLayout)
       }
     },
 
     setLayout (layout) {
-      if(layout && typeof layout !== 'string') {
-        throw new Error('[nuxt] Avoid using non-string value as layout property.')
-      }
-
-      if (!layout || !layouts['_' + layout]) {
+      if (!layout || !resolvedLayouts['_' + layout]) {
         layout = 'default'
       }
       this.layoutName = layout
-      this.layout = layouts['_' + layout]
+      let _layout = '_' + layout
+      this.layout = resolvedLayouts[_layout]
       return this.layout
     },
     loadLayout (layout) {
-      if (!layout || !layouts['_' + layout]) {
-        layout = 'default'
+      const undef = !layout
+      const nonexistent = !(layouts['_' + layout] || resolvedLayouts['_' + layout])
+      let _layout = '_' + ((undef || nonexistent) ? 'default' : layout)
+      if (resolvedLayouts[_layout]) {
+        return Promise.resolve(resolvedLayouts[_layout])
       }
-      return Promise.resolve(layouts['_' + layout])
-    },
+      return layouts[_layout]()
+        .then((Component) => {
+          resolvedLayouts[_layout] = Component
+          delete layouts[_layout]
+          return resolvedLayouts[_layout]
+        })
+        .catch((e) => {
+          if (this.$nuxt) {
+            return this.$nuxt.error({ statusCode: 500, message: e.message })
+          }
+        })
+    }
   },
 
   components: {

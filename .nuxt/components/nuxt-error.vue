@@ -7,11 +7,8 @@
 
       <div class="title">{{ message }}</div>
       <p v-if="statusCode === 404" class="description">
-        <a v-if="typeof $route === 'undefined'" class="error-link" href="/"></a>
-        <NuxtLink v-else class="error-link" to="/">Back to the home page</NuxtLink>
+        <NuxtLink class="error-link" to="/">Back to the home page</NuxtLink>
       </p>
-
-      <p class="description" v-else>An error occurred while rendering the page. Check developer tools console for details.</p>
 
       <div class="logo">
         <a href="https://nuxtjs.org" target="_blank" rel="noopener">Nuxt.js</a>
@@ -43,7 +40,7 @@ export default {
       meta: [
         {
           name: 'viewport',
-          content: 'width=device-width,initial-scale=1.0,minimum-scale=1.0'
+          content: 'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'
         }
       ]
     }

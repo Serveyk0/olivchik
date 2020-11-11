@@ -1,12 +1,10 @@
 <template>
-  <p>index</p>
+  <div class="container">
+    dfsfsd
+  </div>
 </template>
 
 <script>
-
 export default {
-  components: {
-    
-  },
 }
 </script>

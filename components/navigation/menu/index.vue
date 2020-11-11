@@ -12,7 +12,6 @@
 
 <style lang="sass" scoped>
  @import '../../../assets/styles/menu'
- @import '../../../assets/styles/global'
 </style>
 
 <script>

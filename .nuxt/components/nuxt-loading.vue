@@ -88,7 +88,7 @@ export default {
       }, 500)
       return this
     },
-    fail (error) {
+    fail () {
       this.canSucceed = false
       return this
     },
@@ -163,7 +163,7 @@ export default {
   width: 0%;
   opacity: 1;
   transition: width 0.1s, opacity 0.4s;
-  background-color: black;
+  background-color: #ddd;
   z-index: 999999;
 }
 

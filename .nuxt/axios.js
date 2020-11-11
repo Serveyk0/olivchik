@@ -7,7 +7,7 @@ const axiosExtra = {
     this.defaults.baseURL = baseURL
   },
   setHeader (name, value, scopes = 'common') {
-    for (const scope of Array.isArray(scopes) ? scopes : [ scopes ]) {
+    for (let scope of Array.isArray(scopes) ? scopes : [ scopes ]) {
       if (!value) {
         delete this.defaults.headers[scope][name];
         return
@@ -41,12 +41,12 @@ const axiosExtra = {
 }
 
 // Request helpers ($get, $post, ...)
-for (const method of ['request', 'delete', 'get', 'head', 'options', 'post', 'put', 'patch']) {
+for (let method of ['request', 'delete', 'get', 'head', 'options', 'post', 'put', 'patch']) {
   axiosExtra['$' + method] = function () { return this[method].apply(this, arguments).then(res => res && res.data) }
 }
 
 const extendAxiosInstance = axios => {
-  for (const key in axiosExtra) {
+  for (let key in axiosExtra) {
     axios[key] = axiosExtra[key].bind(axios)
   }
 }
@@ -80,10 +80,7 @@ const setupProgress = (axios) => {
     set: () => { }
   }
 
-  const $loading = () => {
-    const $nuxt = typeof window !== 'undefined' && window['$nuxt']
-    return ($nuxt && $nuxt.$loading && $nuxt.$loading.set) ? $nuxt.$loading : noopLoading
-  }
+  const $loading = () => (window.$nuxt && window.$nuxt.$loading && window.$nuxt.$loading.set) ? window.$nuxt.$loading : noopLoading
 
   let currentRequests = 0
 
@@ -115,10 +112,6 @@ const setupProgress = (axios) => {
     currentRequests--
 
     if (Axios.isCancel(error)) {
-      if (currentRequests <= 0) {
-        currentRequests = 0
-        $loading().finish()
-      }
       return
     }
 
@@ -139,12 +132,10 @@ const setupProgress = (axios) => {
 }
 
 export default (ctx, inject) => {
-  // runtimeConfig
-  const runtimeConfig = ctx.$config && ctx.$config.axios || {}
   // baseURL
   const baseURL = process.browser
-    ? (runtimeConfig.browserBaseURL || runtimeConfig.baseURL || 'http://localhost:3000/')
-      : (runtimeConfig.baseURL || process.env._AXIOS_BASE_URL_ || 'http://localhost:3000/')
+      ? 'http://localhost:3000/'
+      : (process.env._AXIOS_BASE_URL_ || 'http://localhost:3000/')
 
   // Create fresh objects for all default header scopes
   // Axios creates only one which is shared across SSR requests!
@@ -167,13 +158,14 @@ export default (ctx, inject) => {
   }
 
   // Proxy SSR request headers headers
-  if (process.server && ctx.req && ctx.req.headers) {
-    const reqHeaders = { ...ctx.req.headers }
-    for (const h of ["accept","host","cf-ray","cf-connecting-ip","content-length","content-md5","content-type"]) {
-      delete reqHeaders[h]
-    }
-    axiosOptions.headers.common = { ...reqHeaders, ...axiosOptions.headers.common }
-  }
+  axiosOptions.headers.common = (ctx.req && ctx.req.headers) ? Object.assign({}, ctx.req.headers) : {}
+  delete axiosOptions.headers.common['accept']
+  delete axiosOptions.headers.common['host']
+  delete axiosOptions.headers.common['cf-ray']
+  delete axiosOptions.headers.common['cf-connecting-ip']
+  delete axiosOptions.headers.common['content-length']
+  delete axiosOptions.headers.common['content-md5']
+  delete axiosOptions.headers.common['content-type']
 
   if (process.server) {
     // Don't accept brotli encoding because Node can't parse it
