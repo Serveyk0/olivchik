@@ -7,6 +7,7 @@
 <script>
 import { mapState } from 'vuex';
 export default {
+  layout: "catalog",
     async asyncData({ app, params, route, error }) {
         try{
             await app.store.dispatch('getCurrentCategory', {route})

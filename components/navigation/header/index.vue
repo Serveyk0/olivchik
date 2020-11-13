@@ -5,7 +5,7 @@
 </template> 
 
 <style lang="sass" scoped>
- @import '../../../assets/styles/header'
+ @import '~~/assets/sass/header'
 </style>
 
 <script>

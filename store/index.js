@@ -15,14 +15,9 @@ export const mutations = {
   }
 }
 export const actions = {
-  async getMenuItems ({ commit }) {
-    try {
-      await sleep(1000)
-      await commit('SET_MENU_ITEMS', menu)
-    } catch (err) {
-      console.log(err)
-      throw new Error('Внутреняя ошибка сервера, сообщите администратору')
-    }
+  async nuxtServerInit ({commit}) {
+    console.log('111');
+    await commit('SET_MENU_ITEMS', menu)
   },
   async getCurrentCategory ({ commit }, { route }) {
     await sleep(1000)
