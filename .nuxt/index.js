@@ -12,9 +12,9 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_cookieuniversalnuxt_65ff30cf from 'nuxt_plugin_cookieuniversalnuxt_65ff30cf' // Source: ./cookie-universal-nuxt.js (mode: 'all')
-import nuxt_plugin_webfontloader_91fc23b2 from 'nuxt_plugin_webfontloader_91fc23b2' // Source: ./webfontloader.js (mode: 'client')
-import nuxt_plugin_axios_2e82bf27 from 'nuxt_plugin_axios_2e82bf27' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_cookieuniversalnuxt_59ca8d67 from 'nuxt_plugin_cookieuniversalnuxt_59ca8d67' // Source: .\\cookie-universal-nuxt.js (mode: 'all')
+import nuxt_plugin_webfontloader_66413a82 from 'nuxt_plugin_webfontloader_66413a82' // Source: .\\webfontloader.js (mode: 'client')
+import nuxt_plugin_axios_460a4bbf from 'nuxt_plugin_axios_460a4bbf' // Source: .\\axios.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -171,16 +171,16 @@ async function createApp (ssrContext) {
 
   // Plugin execution
 
-  if (typeof nuxt_plugin_cookieuniversalnuxt_65ff30cf === 'function') {
-    await nuxt_plugin_cookieuniversalnuxt_65ff30cf(app.context, inject)
+  if (typeof nuxt_plugin_cookieuniversalnuxt_59ca8d67 === 'function') {
+    await nuxt_plugin_cookieuniversalnuxt_59ca8d67(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_webfontloader_91fc23b2 === 'function') {
-    await nuxt_plugin_webfontloader_91fc23b2(app.context, inject)
+  if (process.client && typeof nuxt_plugin_webfontloader_66413a82 === 'function') {
+    await nuxt_plugin_webfontloader_66413a82(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_2e82bf27 === 'function') {
-    await nuxt_plugin_axios_2e82bf27(app.context, inject)
+  if (typeof nuxt_plugin_axios_460a4bbf === 'function') {
+    await nuxt_plugin_axios_460a4bbf(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first
