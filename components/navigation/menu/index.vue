@@ -1,7 +1,7 @@
 <template>
 <nav class="menu">
     <ul class="menu__list grid justify_normal">
-        <li class="menu__list__item grid" v-for="category in categories" :key="category.name">
+        <li class="menu__list__item grid" v-for="category in menu" :key="category.name">
             <nuxt-link :to="`/${category.href}`">
                 {{ category.name }}
             </nuxt-link>
@@ -18,7 +18,7 @@
 export default {
     name: "Menu",
     props: {
-        categories: {
+        menu: {
             type: Array,
             default: () => [],
         },

@@ -1,13 +1,12 @@
 <template>
 <div class="container">
-    <h1>title</h1>
-    <Menu :categories="categories" />
+    <Menu :menu="menu" />
 </div>
 </template>
 
 <script>
 import Menu from '~~/components/navigation/menu';
-import {
+import { 
     mapState
 } from 'vuex'
 export default {
@@ -22,7 +21,7 @@ export default {
         store
     }) {
         try {
-            await store.dispatch('getCategoriesList')
+            await store.dispatch('getMenuItems') 
         } catch (err) {
             console.log(err)
             return error({
@@ -33,7 +32,7 @@ export default {
     },
     computed: {
         ...mapState({
-            categories: 'categoriesList'
+            menu: 'menu_items'
         })
     }
 }
