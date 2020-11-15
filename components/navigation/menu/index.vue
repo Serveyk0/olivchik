@@ -1,8 +1,8 @@
 <template>
 <nav class="menu">
-    <ul class="menu__list grid justify_normal">
+    <ul class="menu__list grid justify-center padding-0 margin-0">
         <li class="menu__list__item grid" v-for="category in menu" :key="category.name">
-            <nuxt-link :to="`/${category.href}`">
+            <nuxt-link :to="`/category/${category.href}`">
                 {{ category.name }}
             </nuxt-link>
         </li>

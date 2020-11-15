@@ -1,6 +1,16 @@
+@import "~~/assets/sass/global_colors.sass";
+    
 .menu
     width: 100%
+    background-color: $cream
+    height: 100%
     .menu__list
-        grid-row-gap: 10px
+        grid-template-columns: repeat(auto-fit, minmax(0, max-content))
+        grid-column-gap: 50px
         .menu__list__item
-            text-decoration: none
+            a
+                text-decoration: none
+                color: $black
+                padding: 15px 0px
+                &:hover
+                    color: $active_color

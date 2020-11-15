@@ -18,7 +18,6 @@ export default {
   async asyncData({ app, params, route, error }) {
     try {
       await app.store.dispatch("getCurrentCategory", { route });
-
     } catch (err) {
       console.log(err);
       return error({
@@ -33,14 +32,12 @@ export default {
     }),
   },
   head() {
-    console.log(this.category.name)
-          debugger;
     return {
       title: this.category.name,
       meta: [
         {
-          hid: "description",
-          name: "description",
+          hid: this.category.name,
+          name: this.category.name,
           content: this.category.MetaDescription,
         },
       ],

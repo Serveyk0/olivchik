@@ -24,14 +24,16 @@ module.exports = {
   serverMiddleware: [
   ],
   router: {
+    middleware: ['resetBreacrumbs'],
     prefetchLinks: false
   },
   loading: { color: '#ddd' },
   css: [
     'normalize.css',
-    './assets/sass/global.css'
+    './assets/sass/global-variables.sass'
   ],
   plugins: [
+    { src: '~~/plugins/vue-lazy-load.js' }
   ],
   modules: [
     // Doc: https://axios.nuxtjs.org/usage

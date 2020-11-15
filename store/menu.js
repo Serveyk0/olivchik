@@ -1,24 +1,24 @@
 export const menu = 
 [
     {
-        id: 1,
-        name: "Главная",
-        href: "",
-        MetaDescription: "Главная",
+        category_id: 1,
+        name: "Ручечки",
+        href: "pens",
+        MetaDescription: "Ручечки описвние",
         products: []
     },
     {
-        id: 2,
-        name: "О нас",
-        href: "about_us",
-        MetaDescription: "О нас",
+        category_id: 2,
+        name: "Карандашечки",
+        href: "pensils",
+        MetaDescription: "Карандашечки описание",
         products: []
     },
     {
-        id: 3,
-        name: "Контакты",
-        href: "contacts",
-        MetaDescription: "Контакты",
+        category_id: 3,
+        name: "3D пазлы",
+        href: "pazzles",
+        MetaDescription: "Пазлы описание",
         products: []
     }
 ];
