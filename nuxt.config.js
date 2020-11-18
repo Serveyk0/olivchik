@@ -4,10 +4,6 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   mode: 'universal',
-  ...(!isDev && {
-    modern: 'client'
-  }),
-
   head: {
     htmlAttrs: {
       lang: 'ru'
@@ -24,7 +20,7 @@ module.exports = {
   },
   rootDir: __dirname,
   serverMiddleware: [
-        { path: '/server', handler: '~/server/index.js' },
+    '~/server/index.js'
   ],
   router: {
     middleware: ['resetBreacrumbs'],
