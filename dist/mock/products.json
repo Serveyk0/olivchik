@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "category_id": 1,
+        "name": "malabar",
+        "price": "p.price",
+        "desc": "p.description"
+    },
+    {
+        "id": 2,
+        "category_id": 2,
+        "name": "malabar",
+        "price": "p.price",
+        "desc": "p.description"
+    },
+    {
+        "id": 3,
+        "category_id": 3,
+        "name": "malabar",
+        "price": "p.price",
+        "desc": "p.description"
+    }
+]

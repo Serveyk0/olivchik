@@ -14,7 +14,9 @@ module.exports = {
     },
     title: 'Nuxt APP',
     meta: [
-      { hid: 'description', name: 'description', content: 'Интернет-магазин' }
+      { charset: 'utf-8' },
+      { name: 'viewport',    content: 'width=device-width, initial-scale=1' },
+      { name: 'description', content: 'Интернет-магазин', hid: 'description' },
     ],
     link: [
       { rel: 'shortcut icon', href: 'favicon.ico' }
@@ -22,6 +24,7 @@ module.exports = {
   },
   rootDir: __dirname,
   serverMiddleware: [
+        { path: '/server', handler: '~/server/index.js' },
   ],
   router: {
     middleware: ['resetBreacrumbs'],
@@ -41,9 +44,23 @@ module.exports = {
     'nuxt-trailingslash-module',
     'nuxt-webfontloader',
     'cookie-universal-nuxt',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/sitemap',
+    '@/modules/generator'
   ],
+  sitemap: {
+    hostname: "http://localhost:3000",
+    default: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date()
+    },
+  },
 
+  
+  generate: {
+    crawler: true // default - true
+  },
   webfontloader: {
     events: false,
     google: {

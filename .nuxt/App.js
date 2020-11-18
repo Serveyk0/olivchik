@@ -21,7 +21,7 @@ const layouts = { "_catalog": _34779363,"_default": _6f6c098b }
 let resolvedLayouts = {}
 
 export default {
-  head: {"htmlAttrs":{"lang":"ru"},"title":"Nuxt APP","meta":[{"hid":"description","name":"description","content":"Интернет-магазин"}],"link":[{"rel":"shortcut icon","href":"favicon.ico"}],"style":[],"script":[]},
+  head: {"htmlAttrs":{"lang":"ru"},"title":"Nuxt APP","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"Интернет-магазин","hid":"description"}],"link":[{"rel":"shortcut icon","href":"favicon.ico"}],"style":[],"script":[]},
 
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
