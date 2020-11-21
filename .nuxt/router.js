@@ -3,14 +3,13 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _578674db = () => interopDefault(import('../pages/about_us.vue' /* webpackChunkName: "pages/about_us" */))
-const _ebb299c4 = () => interopDefault(import('../pages/contacts.vue' /* webpackChunkName: "pages/contacts" */))
-const _6595b63f = () => interopDefault(import('../pages/delivery.vue' /* webpackChunkName: "pages/delivery" */))
-const _770d7a46 = () => interopDefault(import('../pages/api/new_category.vue' /* webpackChunkName: "pages/api/new_category" */))
-const _c2728384 = () => interopDefault(import('../pages/api/new_menu.vue' /* webpackChunkName: "pages/api/new_menu" */))
-const _5f213a89 = () => interopDefault(import('../pages/category/_SpecificCategory.vue' /* webpackChunkName: "pages/category/_SpecificCategory" */))
-const _6ba199e4 = () => interopDefault(import('../pages/products/_SpecificProduct.vue' /* webpackChunkName: "pages/products/_SpecificProduct" */))
-const _c81894d2 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _01724591 = () => interopDefault(import('..\\pages\\about_us.vue' /* webpackChunkName: "pages_about_us" */))
+const _341283d4 = () => interopDefault(import('..\\pages\\contacts.vue' /* webpackChunkName: "pages_contacts" */))
+const _0f8186f5 = () => interopDefault(import('..\\pages\\delivery.vue' /* webpackChunkName: "pages_delivery" */))
+const _b22c28b4 = () => interopDefault(import('..\\pages\\api\\new_category.vue' /* webpackChunkName: "pages_api_new_category" */))
+const _7df196a0 = () => interopDefault(import('..\\pages\\category\\_SpecificCategory.vue' /* webpackChunkName: "pages_category__SpecificCategory" */))
+const _3f8e56ba = () => interopDefault(import('..\\pages\\products\\_SpecificProduct.vue' /* webpackChunkName: "pages_products__SpecificProduct" */))
+const _f84adebe = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 // TODO: remove in Nuxt 3
 const emptyFn = () => {}
@@ -30,35 +29,31 @@ export const routerOptions = {
 
   routes: [{
     path: "/about_us",
-    component: _578674db,
+    component: _01724591,
     name: "about_us"
   }, {
     path: "/contacts",
-    component: _ebb299c4,
+    component: _341283d4,
     name: "contacts"
   }, {
     path: "/delivery",
-    component: _6595b63f,
+    component: _0f8186f5,
     name: "delivery"
   }, {
     path: "/api/new_category",
-    component: _770d7a46,
+    component: _b22c28b4,
     name: "api-new_category"
   }, {
-    path: "/api/new_menu",
-    component: _c2728384,
-    name: "api-new_menu"
-  }, {
     path: "/category/:SpecificCategory?",
-    component: _5f213a89,
+    component: _7df196a0,
     name: "category-SpecificCategory"
   }, {
     path: "/products/:SpecificProduct?",
-    component: _6ba199e4,
+    component: _3f8e56ba,
     name: "products-SpecificProduct"
   }, {
     path: "/",
-    component: _c81894d2,
+    component: _f84adebe,
     name: "index"
   }],
 

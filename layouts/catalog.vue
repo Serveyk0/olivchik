@@ -21,22 +21,20 @@ export default {
     Menu,
     Header,
     Footer,
-    Breadcrumbs
+    Breadcrumbs,
   },
   computed: {
     ...mapState({
       menu: "menu_items",
-      header: "header_items"
-    })
+      header: "header_items",
+    }),
   },
   head() {
     return {
       title: "title",
       meta: [{ hid: "description", name: "description", content: "content" }],
-      link: [
-        { rel: "canonical", href: `http://localhost:3000${this.$route.path}` }
-      ]
+      link: [{ rel: "canonical", href: `http://localhost:3000${this.$route.path}` }],
     };
-  }
+  },
 };
 </script>

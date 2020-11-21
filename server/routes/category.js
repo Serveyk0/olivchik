@@ -4,9 +4,9 @@ const Category = require("../models/category");
 
 router.get("/", async (req, res) => 
 {
+    res.set('Access-Control-Allow-Origin', '*')
     try {
-        const _category = await Category.find({  })
-        .select("href name");
+        const _category = await Category.find()
         await res.json(_category);
     } catch (err) {
         res.status(500).json({ message: err.message });

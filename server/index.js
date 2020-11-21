@@ -7,12 +7,13 @@ const app = express();
 const PORT = process.env.PORT || 3001
 var cors = require('cors');
 
-// use it before all route definitions
 app.use(cors({origin: 'http://localhost:3005'}));
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 const productRoutes = require("./routes/products.js");
 app.use("/api/products", productRoutes);
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
 const menuRoutes = require("./routes/menu.js");
 app.use("/api/menu", menuRoutes);
 const categoryRoutes = require("./routes/category.js");

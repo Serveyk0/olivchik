@@ -1,31 +1,24 @@
 <template>
-<nav class="menu">
-    <ul class="menu__list grid justify-center padding-0 margin-0">
-        <li class="menu__list__item grid" v-for="category in data" :key="category.name">
-            <nuxt-link :to="`/category/${category.href}`">
-                {{ category.name }}
-            </nuxt-link>
-        </li>
-    </ul>
-</nav>
+  <nav class="menu">
+    <nuxt-link v-for="item in categories" :key="item.href" :to="`/category/${item._id}`">{{ item.name }}</nuxt-link>
+  </nav>
 </template>
 
 <style lang="sass" scoped>
-  @import '~~/assets/sass/menu'
+@import '~~/assets/sass/menu'
 </style>
 
 <script>
+import axios from "axios";
 export default {
-    name: "Menu",
-    props: {
-        menu: {
-            type: Array,
-            default: () => [],
-        },
-    },
-    async asyncData() {
-        const { data } = await axios.get("localhost:3005/api/category");
-        return { data : data }
-    }
+  data() {
+    return {
+      categories: [1],
+    };
+  },
+  mounted() {
+    axios.get("http://localhost:3001/api/category")
+    .then( res => this.categories = res.data)
+  },
 };
 </script>
