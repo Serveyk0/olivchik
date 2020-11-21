@@ -1,7 +1,7 @@
 <template>
   <div class="catalog grid">
     <Header :header="header" />
-    <Menu :menu="menu" />
+    <Menu />
     <div class="content align-normal grid">
       <Breadcrumbs />
       <Nuxt />

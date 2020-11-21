@@ -45,7 +45,7 @@ module.exports = {
     '@/modules/generator'
   ],
   sitemap: {
-    hostname: "http://localhost:3000",
+    hostname: "http://localhost:3005",
     default: {
       changefreq: 'daily',
       priority: 1,

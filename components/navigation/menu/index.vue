@@ -1,7 +1,7 @@
 <template>
 <nav class="menu">
     <ul class="menu__list grid justify-center padding-0 margin-0">
-        <li class="menu__list__item grid" v-for="category in menu" :key="category.name">
+        <li class="menu__list__item grid" v-for="category in data" :key="category.name">
             <nuxt-link :to="`/category/${category.href}`">
                 {{ category.name }}
             </nuxt-link>
@@ -23,5 +23,9 @@ export default {
             default: () => [],
         },
     },
+    async asyncData() {
+        const { data } = await axios.get("localhost:3005/api/category");
+        return { data : data }
+    }
 };
 </script>
