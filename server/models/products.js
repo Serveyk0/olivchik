@@ -4,6 +4,10 @@ let schema = new Schema({
     h1: {
         type: String,
         required: true
+    },
+    href: {
+        type: String,
+        required: true
     }
 });
 

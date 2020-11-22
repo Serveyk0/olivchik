@@ -1,6 +1,6 @@
 <template>
   <nav class="menu">
-    <nuxt-link v-for="item in categories" :key="item.href" :to="`/category/${item._id}`">{{ item.name }}</nuxt-link>
+    <nuxt-link v-for="item in categories" :key="item._id" :to="`/category/${item.href}`">{{ item.name }}</nuxt-link>
   </nav>
 </template>
 
@@ -11,9 +11,15 @@
 <script>
 import axios from "axios";
 export default {
+  props: {
+    menu: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
-      categories: [1],
+      categories: [],
     };
   },
   mounted() {

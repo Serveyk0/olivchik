@@ -2,11 +2,6 @@
   <div>
     <div>
       <div>
-        <!-- <a :href="product.images.imgXL" target="_blank"> -->
-          <!-- <img
-            v-lazy="product.images.imgL"
-          /> -->
-        <!-- </a> -->
       </div>
       <div>
         <h1>{{ product.name }}</h1>

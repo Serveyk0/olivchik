@@ -9,12 +9,12 @@ import {
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '..\\node_modules\\normalize.css\\normalize.css'
+import '../node_modules/normalize.css/normalize.css'
 
-import '..\\assets\\sass\\global-variables.sass'
+import '../assets/sass/global-variables.sass'
 
-const _34779363 = () => import('..\\layouts\\catalog.vue'  /* webpackChunkName: "layouts_catalog" */).then(m => m.default || m)
-const _6f6c098b = () => import('./layouts/default.vue'  /* webpackChunkName: "layouts_default" */).then(m => m.default || m)
+const _34779363 = () => import('../layouts/catalog.vue'  /* webpackChunkName: "layouts/catalog" */).then(m => m.default || m)
+const _6f6c098b = () => import('./layouts/default.vue'  /* webpackChunkName: "layouts/default" */).then(m => m.default || m)
 
 const layouts = { "_catalog": _34779363,"_default": _6f6c098b }
 

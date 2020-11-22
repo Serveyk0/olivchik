@@ -1,5 +1,6 @@
 <template>
   <div class="category">
+    {{category}}
     <h1>{{ category.name }}</h1>
     <div v-for="product in category.products" :key="product.id">
       <ProductsPage :product="product" />
@@ -19,7 +20,6 @@ export default {
     try {
       await app.store.dispatch("getCurrentCategory", { route });
     } catch (err) {
-      console.log(err);
       return error({
         statusCode: 404,
         message: "Категория не найдена или сервер не доступен",
