@@ -12,10 +12,10 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_cookieuniversalnuxt_65ff30cf from 'nuxt_plugin_cookieuniversalnuxt_65ff30cf' // Source: ./cookie-universal-nuxt.js (mode: 'all')
-import nuxt_plugin_webfontloader_91fc23b2 from 'nuxt_plugin_webfontloader_91fc23b2' // Source: ./webfontloader.js (mode: 'client')
-import nuxt_plugin_axios_2e82bf27 from 'nuxt_plugin_axios_2e82bf27' // Source: ./axios.js (mode: 'all')
-import nuxt_plugin_vuelazyload_b92c81b2 from 'nuxt_plugin_vuelazyload_b92c81b2' // Source: ../plugins/vue-lazy-load.js (mode: 'all')
+import nuxt_plugin_cookieuniversalnuxt_3d52eb1e from 'nuxt_plugin_cookieuniversalnuxt_3d52eb1e' // Source: .\\cookie-universal-nuxt.js (mode: 'all')
+import nuxt_plugin_webfontloader_8953ec6e from 'nuxt_plugin_webfontloader_8953ec6e' // Source: .\\webfontloader.js (mode: 'client')
+import nuxt_plugin_axios_c494c66e from 'nuxt_plugin_axios_c494c66e' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_vuelazyload_b92c81b2 from 'nuxt_plugin_vuelazyload_b92c81b2' // Source: ..\\plugins\\vue-lazy-load.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -172,16 +172,16 @@ async function createApp (ssrContext) {
 
   // Plugin execution
 
-  if (typeof nuxt_plugin_cookieuniversalnuxt_65ff30cf === 'function') {
-    await nuxt_plugin_cookieuniversalnuxt_65ff30cf(app.context, inject)
+  if (typeof nuxt_plugin_cookieuniversalnuxt_3d52eb1e === 'function') {
+    await nuxt_plugin_cookieuniversalnuxt_3d52eb1e(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_webfontloader_91fc23b2 === 'function') {
-    await nuxt_plugin_webfontloader_91fc23b2(app.context, inject)
+  if (process.client && typeof nuxt_plugin_webfontloader_8953ec6e === 'function') {
+    await nuxt_plugin_webfontloader_8953ec6e(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_2e82bf27 === 'function') {
-    await nuxt_plugin_axios_2e82bf27(app.context, inject)
+  if (typeof nuxt_plugin_axios_c494c66e === 'function') {
+    await nuxt_plugin_axios_c494c66e(app.context, inject)
   }
 
   if (typeof nuxt_plugin_vuelazyload_b92c81b2 === 'function') {

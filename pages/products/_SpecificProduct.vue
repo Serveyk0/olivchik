@@ -14,6 +14,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  layout: "catalog",
   async asyncData ({ app, params, route, error }) {
     try {
       await app.store.dispatch('getCurrentProduct', { route })
@@ -27,7 +28,7 @@ export default {
   },
   computed: {
     ...mapState({
-      product: 'currentProduct'
+      product: 'current_product'
     })
   },
   head () {
