@@ -1,6 +1,5 @@
 <template>
   <div class="category">
-    {{category}}
     <h1>{{ category.name }}</h1>
     <div v-for="product in category.products" :key="product.id">
       <ProductsPage :product="product" />

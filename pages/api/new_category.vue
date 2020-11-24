@@ -34,6 +34,8 @@ export default {
         href: this.href,
       };
       axios.post(`http://localhost:3001/api/category`, form);
+      this.name = "",
+      this.href = ""
     },
   },
 };

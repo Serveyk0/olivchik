@@ -1,5 +1,5 @@
 <template>
-  <nav class="menu">
+  <nav class="menu grid justify-center">
     <nuxt-link v-for="item in categories" :key="item._id" :to="`/category/${item.href}`">{{ item.name }}</nuxt-link>
   </nav>
 </template>

@@ -115,20 +115,9 @@ export const actions = {
   },
   async getCurrentProduct ({ commit, dispatch }, { route }) {
     let products = [];
-    let hr = route.params.SpecificProduct;
     await this.$axios.$get('http://localhost:3001/api/products')
       .then(res => products = res.find((prod) => prod.href === route.params.SpecificProduct));
       debugger;
       commit('SET_CURRENT_PRODUCT', products)
-  //   await sleep(300)
-  //   const productSlug = route.params.SpecificProduct
-  //   const [products, productsImages] = await Promise.all(
-  //     [
-  //       this.$axios.$get('/mock/products.json'),
-  //       this.$axios.$get('/mock/products-images.json')
-  //     ]
-  //   )
-  //   const product = getProduct(products, productsImages, productSlug)
-  //   await commit('SET_CURRENT_PRODUCT', product)
   }
 }
